@@ -9,7 +9,6 @@ import android.util.Log;
 
 import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
 import com.example.android.bookstoreapp.data.BookStoreDbHelper;
-import com.example.android.bookstoreapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
