@@ -1,4 +1,4 @@
-package com.example.android.bookstore;
+package com.example.android.bookstoreapp;
 
 import android.content.ContentValues;
 import android.database.Cursor;
