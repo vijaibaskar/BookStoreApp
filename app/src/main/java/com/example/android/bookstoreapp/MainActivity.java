@@ -4,13 +4,19 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
+import com.example.android.bookstoreapp.data.BookStoreCursorAdapter;
 import com.example.android.bookstoreapp.data.BookStoreDbHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    BookStoreCursorAdapter mCursorAdapter;
+
+    private static final int BOOK_LOADER = 0;
 
     private static final String LOG_TAG = "MainActivity.java";
 
@@ -20,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        
         mDbHelper = new BookStoreDbHelper(this);
         insertData();
         queryData();
