@@ -7,6 +7,8 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -37,7 +39,6 @@ public class BookStoreProvider extends ContentProvider {
         // should recognize. All paths added to the UriMatcher have a corresponding code to return
         // when a match is found.
 
-        // TODO: Add 2 content URIs to URI matcher
         sUriMatcher.addURI(BookStoreContract.CONTENT_AUTHORITY, BookStoreContract.PATH_BOOKSTORE, BOOKS);
         sUriMatcher.addURI(BookStoreContract.CONTENT_AUTHORITY, BookStoreContract.PATH_BOOKSTORE + "/#", BOOK_ID);
     }
@@ -49,7 +50,6 @@ public class BookStoreProvider extends ContentProvider {
      */
     @Override
     public boolean onCreate() {
-        // TODO: Create and initialize a PetDbHelper object to gain access to the pets database.
         // Make sure the variable is a global variable, so it can be referenced from other
         // ContentProvider methods.
         mDbHelper = new BookStoreDbHelper(getContext());
@@ -122,19 +122,34 @@ public class BookStoreProvider extends ContentProvider {
         // Check that the name is not null
         String name = values.getAsString(BookEntry.COLUMN_PRODUCT_NAME);
         if (name == null) {
+            Toast.makeText(getContext(), R.string.blank_entry, Toast.LENGTH_SHORT).show();
             throw new IllegalArgumentException("Inventory requires a name");
         }
 
         //Check that the price is not null
         Integer price = values.getAsInteger(BookEntry.COLUMN_PRICE);
         if (price == null) {
+            Toast.makeText(getContext(), R.string.blank_entry, Toast.LENGTH_SHORT).show();
             throw new IllegalArgumentException("Inventory requires a price");
         }
 
         //Check that the quantity is not null
         Integer quantity = values.getAsInteger(BookEntry.COLUMN_QUANTITY);
         if (quantity == null) {
+            Toast.makeText(getContext(), R.string.blank_entry, Toast.LENGTH_SHORT).show();
             throw new IllegalArgumentException("Inventory requires a quantity");
+        }
+
+        String supplierName = values.getAsString(BookEntry.COLUMN_SUPPLIER_NAME);
+        if (supplierName == null) {
+            Toast.makeText(getContext(), R.string.blank_entry, Toast.LENGTH_SHORT).show();
+            throw new IllegalArgumentException("Supplier requires a name");
+        }
+
+        String supplierPhone = values.getAsString(BookEntry.COLUMN_SUPPLIER_PHONE);
+        if (supplierPhone == null) {
+            Toast.makeText(getContext(), R.string.blank_entry, Toast.LENGTH_SHORT).show();
+            throw new IllegalArgumentException("Supplier requires a phone number");
         }
 
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
@@ -196,14 +211,28 @@ public class BookStoreProvider extends ContentProvider {
                 throw new IllegalArgumentException("Inventory requires a quantity");
             }
 
+        if (values.containsKey(BookEntry.COLUMN_SUPPLIER_NAME)) {
+            String supplierName = values.getAsString(BookEntry.COLUMN_SUPPLIER_NAME);
+            if (supplierName == null) {
+                Toast.makeText(getContext(), R.string.blank_entry, Toast.LENGTH_SHORT).show();
+                throw new IllegalArgumentException("Supplier requires a name");
+            }
+        }
 
-            // TODO: Return the number of rows that were affected
+        if (values.containsKey(BookEntry.COLUMN_SUPPLIER_PHONE)) {
+            String supplierPhone = values.getAsString(BookEntry.COLUMN_SUPPLIER_PHONE);
+            if (supplierPhone == null) {
+                Toast.makeText(getContext(), R.string.blank_entry, Toast.LENGTH_SHORT).show();
+                throw new IllegalArgumentException("Supplier requires a phone number");
+            }
+        }
+
             if (values.size() == 0) {
                 return 0;
             }
         }
 
-        // Otherwise, get writeable database to update the data
+        // Otherwise, get writable database to update the data
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         int rowsUpdated = database.update(BookEntry.TABLE_NAME, values, selection, selectionArgs);

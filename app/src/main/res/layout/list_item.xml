@@ -82,5 +82,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:text="Sale"/>
+        android:text="Sale"
+        android:onClick="decrementQuantity"
+        android:focusable="false"/>
 </RelativeLayout>
