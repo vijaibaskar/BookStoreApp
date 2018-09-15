@@ -236,7 +236,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     /**
-     * Perform the deletion of the pet in the database.
+     * Perform the deletion of the entry in the database.
      */
     private void deletePet() {
         if (mCurrentUri != null) {
