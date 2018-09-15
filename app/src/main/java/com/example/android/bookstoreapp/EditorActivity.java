@@ -143,8 +143,17 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
-                saveEntry();
-                finish();
+                if (mNameEditText.getText().toString().equals("") ||
+                    mPriceEditText.getText().toString().equals("") ||
+                    mQuantityEditText.getText().toString().equals("") ||
+                    mSupplierNameEditText.getText().toString().equals("") ||
+                    mSupplierPhoneEditText.getText().toString().equals(""))
+                    {
+                    Toast.makeText(this, R.string.blank_entry, Toast.LENGTH_SHORT).show();
+                } else {
+                    saveEntry();
+                    finish();
+                }
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
