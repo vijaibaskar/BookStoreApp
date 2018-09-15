@@ -22,7 +22,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.android.bookstoreapp.data.BookStoreContract;
 import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
 
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {

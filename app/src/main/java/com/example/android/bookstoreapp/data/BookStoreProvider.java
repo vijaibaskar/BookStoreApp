@@ -7,15 +7,11 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.provider.Settings;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.android.bookstoreapp.R;
-
-import java.security.Provider;
 import com.example.android.bookstoreapp.data.BookStoreContract.BookEntry;
 
 /**
