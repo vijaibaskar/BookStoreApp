@@ -275,10 +275,6 @@ public class BookStoreProvider extends ContentProvider {
         return rowsDeleted;
     }
 
-    public void saleButton(View v) {
-
-    }
-
     @Override
     public String getType (Uri uri){
 

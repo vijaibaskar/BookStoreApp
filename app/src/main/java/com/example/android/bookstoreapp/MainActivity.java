@@ -111,8 +111,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Log.v(LOG_TAG, rowsDeleted + " rows deleted from bookstore database");
     }
 
-
-
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int i, @Nullable Bundle bundle) {
