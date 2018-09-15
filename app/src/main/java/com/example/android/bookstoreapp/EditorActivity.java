@@ -152,7 +152,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 return true;
             // Respond to a click on the "Up" arrow button in the app bar
             case android.R.id.home:
-                if(!mEntryHasChanged) {
+                if (!mEntryHasChanged) {
                     // Navigate back to parent activity (CatalogActivity)
                     NavUtils.navigateUpFromSameTask(this);
                     return true;
@@ -177,7 +177,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         builder.setNegativeButton(R.string.keep_editing, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
-                if(dialog != null) {
+                if (dialog != null) {
                     dialog.dismiss();
                 }
             }
@@ -188,7 +188,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     public void onBackPressed() {
-        if(!mEntryHasChanged) {
+        if (!mEntryHasChanged) {
             super.onBackPressed();
             return;
         }
@@ -231,12 +231,12 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
      * Perform the deletion of the pet in the database.
      */
     private void deletePet() {
-        if (mCurrentUri != null){
+        if (mCurrentUri != null) {
             int rowsDeleted = getContentResolver().delete(mCurrentUri, null, null);
             if (rowsDeleted == 0) {
-                Toast.makeText(this, getString(R.string.editor_delete_entry_failed),Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.editor_delete_entry_failed), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, getString(R.string.editor_delete_entry_successful),Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.editor_delete_entry_successful), Toast.LENGTH_SHORT).show();
             }
         }
         finish();
@@ -264,20 +264,27 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         } else {
             quantity = Integer.parseInt(quantityString);
         }
-            mQuantityEditText.setText(String.valueOf(quantity + 1));
-            mEntryHasChanged = true;
+        mQuantityEditText.setText(String.valueOf(quantity + 1));
+        mEntryHasChanged = true;
+    }
+
+    public void callSupplier(View v) {
+        String supplierPhone = mSupplierPhoneEditText.getText().toString();
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + supplierPhone));
+        startActivity(intent);
     }
 
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int i, @Nullable Bundle bundle) {
-        String [] projection = {
+        String[] projection = {
                 BookEntry._ID,
                 BookEntry.COLUMN_PRODUCT_NAME,
                 BookEntry.COLUMN_PRICE,
                 BookEntry.COLUMN_QUANTITY,
                 BookEntry.COLUMN_SUPPLIER_NAME,
-                BookEntry.COLUMN_SUPPLIER_PHONE };
+                BookEntry.COLUMN_SUPPLIER_PHONE};
 
         return new CursorLoader(this, mCurrentUri, projection, null, null, null);
     }

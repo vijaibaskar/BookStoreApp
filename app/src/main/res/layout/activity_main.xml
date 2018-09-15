@@ -47,5 +47,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        android:text="Add a pet"/>
+        android:text="Add a pet"
+        android:src="@drawable/logo_books" />
 </RelativeLayout>

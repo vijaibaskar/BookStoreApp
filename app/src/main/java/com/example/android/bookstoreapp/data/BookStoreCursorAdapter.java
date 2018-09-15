@@ -56,7 +56,7 @@ public class BookStoreCursorAdapter extends CursorAdapter {
                 values.put(BookEntry.COLUMN_PRICE, bookPrice);
 
 
-                if(Integer.valueOf(bookQuantity) > 0 ) {
+                if (Integer.valueOf(bookQuantity) > 0) {
                     values.put(BookEntry.COLUMN_QUANTITY, Integer.valueOf(bookQuantity) - 1);
                 }
 

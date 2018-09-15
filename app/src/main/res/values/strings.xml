@@ -19,11 +19,6 @@
     <!-- Label for editor overflow menu option that deletes the current entry [CHAR LIMIT=20] -->
     <string name="action_delete">Delete</string>
 
-    <!-- Label for overview category of attributes in the editor [CHAR LIMIT=30] -->
-    <string name="category_overview">Overview</string>
-
-    <string name="category_numbers">Numbers</string>
-
     <string name="save_error">Error with saving entry</string>
 
     <string name="save_success">Entry saved</string>
@@ -39,7 +34,7 @@
     <string name="keep_editing">Keep editing</string>
 
     <!-- Dialog message to ask the user to confirm deleting the current entry [CHAR LIMIT=NONE] -->
-    <string name="delete_dialog_msg">Delete this pet?</string>
+    <string name="delete_dialog_msg">Delete this entry?</string>
 
     <!-- Dialog button text for the option to confirm deleting the current entry [CHAR LIMIT=20] -->
     <string name="delete">Delete</string>
@@ -54,5 +49,11 @@
     <string name="editor_delete_entry_failed">Error with deleting entry</string>
 
     <string name="blank_entry">One or more fields are blank</string>
+
+    <string name="product_name">Product Name</string>
+    <string name="supplier_name">Supplier Name</string>
+    <string name="supplier_phone">Supplier Phone</string>
+    <string name="product_price">Price</string>
+    <string name="quantity">Quantity</string>
 
 </resources>
