@@ -113,9 +113,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         Log.v(LOG_TAG, rowsDeleted + " rows deleted from bookstore database");
     }
 
-    public void decrementQuantity(View v) {
-        
-    }
+
 
     @NonNull
     @Override

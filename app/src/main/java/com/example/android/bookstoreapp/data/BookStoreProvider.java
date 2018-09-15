@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.android.bookstoreapp.R;
@@ -276,6 +277,10 @@ public class BookStoreProvider extends ContentProvider {
         }
 
         return rowsDeleted;
+    }
+
+    public void saleButton(View v) {
+
     }
 
     @Override

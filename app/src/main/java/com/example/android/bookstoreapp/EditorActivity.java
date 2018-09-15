@@ -73,6 +73,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mQuantityEditText.setOnTouchListener(mTouchListener);
         mSupplierNameEditText.setOnTouchListener(mTouchListener);
         mSupplierPhoneEditText.setOnTouchListener(mTouchListener);
+
     }
 
     private void saveEntry() {
@@ -202,7 +203,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     private void showDeleteConfirmationDialog() {
         // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the postivie and negative buttons on the dialog.
+        // for the positive and negative buttons on the dialog.
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_dialog_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
@@ -239,6 +240,32 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             }
         }
         finish();
+    }
+
+    public void decrementQuantity(View v) {
+        String quantityString = mQuantityEditText.getText().toString();
+        int quantity;
+        if (quantityString.isEmpty()) {
+            return;
+        } else if (quantityString.equals("0")) {
+            return;
+        } else {
+            quantity = Integer.parseInt(quantityString);
+            mQuantityEditText.setText(String.valueOf(quantity - 1));
+            mEntryHasChanged = true;
+        }
+    }
+
+    public void incrementQuantity(View v) {
+        String quantityString = mQuantityEditText.getText().toString();
+        int quantity;
+        if (quantityString.isEmpty()) {
+            quantity = 0;
+        } else {
+            quantity = Integer.parseInt(quantityString);
+        }
+            mQuantityEditText.setText(String.valueOf(quantity + 1));
+            mEntryHasChanged = true;
     }
 
     @NonNull
